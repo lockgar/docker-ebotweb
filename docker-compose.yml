@@ -1,5 +1,5 @@
 ebot:
-  image: hsfactory/ebot
+  image: quay.io/lockgar/ebot-hu
   restart: always
   links:
     - "mysql:mysql"
@@ -9,8 +9,8 @@ ebot:
     - "12360:12360/udp"
     - "12361:12361/udp"
   volumes:
-    - /opt/docker/ebot/logs:/ebot/logs
-    - /opt/docker/ebot/demos:/ebot/demos
+    - /opt/docker/ebot/logs:/home/ebot/logs
+    - /opt/docker/ebot/demos:/home/ebot/demos
   environment:
     EXTERNAL_IP: 'xxx.xxx.xxx.xxx'
     MYSQL_HOST: 'mysql'
@@ -29,7 +29,7 @@ ebot:
     USE_DELAY_END_RECORD: 'true'
 
 ebotweb:
-  image: hsfactory/ebotweb
+  image: quay.io/lockgar/ebotweb-huv2
   restart: always
   links:
     - "mysql:mysql"
@@ -37,7 +37,7 @@ ebotweb:
     - "80:80"
   volumes:
     - /opt/docker/ebot/demos:/opt/ebot/demos
-    - /opt/docker/ebot/logs:/opt/ebotlogs
+    - /opt/docker/ebot/logs:/opt/ebot/logs
   environment:
     EBOT_IP: 'xxx.xxx.xxx.xxx'
     EBOT_PORT: '12360'
